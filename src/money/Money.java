@@ -1,6 +1,6 @@
 package money;
 
-class Money implements Expression{
+class Money implements Expression {
     protected int amount;
 
     protected String currency;
@@ -9,8 +9,12 @@ class Money implements Expression{
         return new Money(amount * multiplier, this.currency);
     }
 
-    Expression plus(Money addend){
-        return new Money(amount + addend.amount, this.currency);
+    Expression plus(Money addend) {
+        return new Sum(this, addend);
+    }
+
+    public Money reduce(String to) {
+        return this;
     }
 
     Money(int amount, String currency) {
